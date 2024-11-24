@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/vinted-monitor.git
+   git clone https://github.com/devjannis/vinted-monitor.git
    cd vinted-monitor
    ```
 
