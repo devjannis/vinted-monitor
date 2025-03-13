@@ -2,6 +2,12 @@
 
 A Discord bot that monitors Vinted for new products based on specific search terms. When new items are found, the bot posts them to a specified Discord channel with detailed information and links to the product.
 
+<p align="center">
+<a>
+  <img src="./images/preview.jpeg" alt="Example" style="max-height: 800px; width: auto;">
+  </a>
+</p>
+
 ## Features
 
 - **Search for products** on Vinted based on configurable search terms.
