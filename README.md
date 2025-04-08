@@ -99,6 +99,14 @@ You can customize several aspects of the bot by modifying the `config.json` file
 - **refresh_delay**: How often the bot checks for new products (in seconds).
 - **max_images_per_post**: The maximum number of images to display for each product.
 
+## Disclaimer
+
+This tool is intended for educational use only. Ensure compliance with the terms of service of any Shopify stores you monitor, and use the tool responsibly.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Troubleshooting
 
 - If the bot fails to authenticate with the Vinted API, ensure that the `token` in `config.json` is correct and that Vinted's API is accessible.
