@@ -1,113 +1,111 @@
-# Vinted Monitor Bot
+# Vinted Monitor Discord Bot
 
-A Discord bot that monitors Vinted for new products based on specific search terms. When new items are found, the bot posts them to a specified Discord channel with detailed information and links to the product.
+A Discord bot that monitors Vinted for new clothing items based on configurable search terms and posts them to a specified Discord channel.
 
-<p align="center">
-<a>
-  <img src="./images/preview.jpeg" alt="Example" style="max-height: 800px; width: auto;">
-  </a>
-</p>
+![Example of Discord post](./images/preview.jpeg)
 
 ## Features
 
-- **Search for products** on Vinted based on configurable search terms.
-- **Post new products** to a Discord channel with detailed information:
-  - Product title, price, size, brand, country of origin, and condition.
-  - User feedback rating.
-  - A maximum of 4 product images.
-- **Buttons for interaction:**
-  - Buy now.
-  - Send a message to the seller.
-  - Direct link to the product on Vinted.
-- **Customizable search terms** and refresh delay settings.
-- **Stores seen products** to avoid duplicates using a local database (products.json).
+- **Real-time monitoring** of Vinted marketplace for new listings matching your search terms
+- **Automated Discord notifications** with detailed product information:
+  - Title, price, size, brand, and condition
+  - Seller rating and location
+  - Up to 4 product images
+- **Interactive buttons** for direct actions:
+  - Buy the item
+  - Message the seller
+  - View the full product listing
+- **Smart duplicate detection** to avoid repeated notifications
+- **Configurable search parameters** including refresh rate and search terms
+
+## Project Structure
+
+```
+vinted-monitor/
+├── src/
+│   ├── api/
+│   │   ├── auth.py         # Vinted API authentication
+│   │   └── vinted.py       # Vinted API interaction
+│   ├── discord_utils/
+│   │   ├── bot.py          # Discord bot implementation
+│   │   ├── embeds.py       # Message formatting
+│   │   └── views.py        # Interactive buttons
+│   ├── models/
+│   │   ├── config.py       # Configuration management
+│   │   ├── database.py     # Product storage
+│   │   └── product.py      # Product data model
+│   ├── utils/
+│   │   └── logger.py       # Logging functionality
+│   └── main.py             # Entry point
+└── README.md
+```
 
 ## Requirements
 
 - Python 3.7 or higher
-- Dependencies:
-  - `discord.py` (for interacting with Discord)
-  - `requests` (for making HTTP requests)
-  - `asyncio` (for handling asynchronous tasks)
-  
-To install the dependencies, use the following command:
+- Required packages:
+  - discord.py
+  - requests
+  - asyncio
 
-```bash
-pip install -r requirements.txt
-```
+## Installation
 
-## Setup
-
-1. Clone this repository:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/devjannis/vinted-monitor.git
+   git clone https://github.com/yourusername/vinted-monitor.git
    cd vinted-monitor
    ```
 
-2. Create a `config.json` file with your configuration:
-
-```json
-{
-  "token": "YOUR_DISCORD_BOT_TOKEN",
-  "channel_id": 123456789012345678,
-  "search_terms": ["ralph lauren", "nike"],
-  "refresh_delay": 3,
-  "max_images_per_post": 4
-}
-```
-
-- Replace `YOUR_DISCORD_BOT_TOKEN` with your Discord bot token.
-- Replace `123456789012345678` with the channel ID where the bot will post products.
-- Adjust the `search_terms` to match the products you're looking for.
-- Set the `refresh_delay` (in seconds) to control how often the bot checks for new products.
-
-3. Create a `products.json` file to store seen products (this will be automatically generated if it doesn't exist):
-   ```json
-   {}
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
    ```
 
-## Running the Bot
+3. Create a `config.json` file in the project root:
+   ```json
+   {
+     "token": "YOUR_DISCORD_BOT_TOKEN",
+     "channel_id": 123456789012345678,
+     "search_terms": ["ralph lauren", "nike"],
+     "refresh_delay": 3,
+     "max_images_per_post": 4
+   }
+   ```
 
-Run the bot with the following command:
+## Usage
+
+Start the bot by running:
 
 ```bash
-python vinted_monitor.py
+python src/main.py
 ```
 
-The bot will log in to Discord, authenticate with the Vinted API, and begin monitoring the products. If new items matching your search terms are found, they will be posted in the specified channel.
+The bot will:
+1. Connect to Discord using your bot token
+2. Authenticate with the Vinted API
+3. Begin monitoring Vinted for products matching your search terms
+4. Post new listings to your specified Discord channel
+
+## Configuration Options
+
+- **token**: Your Discord bot token
+- **channel_id**: The Discord channel ID where product notifications will be sent
+- **search_terms**: List of keywords to search for on Vinted
+- **refresh_delay**: Time between searches in seconds
+- **max_images_per_post**: Maximum number of product images to include (1-4)
 
 ## Logging
 
-The bot logs activity to a file named `vinted_monitor.log` and the console. It logs:
+Activity and errors are logged to:
+- Console output
+- `vinted_monitor.log` file in the project root
 
-- Successful product posts
-- Errors (e.g., issues with authentication, retrieving product data, etc.)
+## Notes
 
-## Commands and Buttons
-
-Once the bot posts a product in the Discord channel, the following buttons will be available for interaction:
-
-- **Buy Now**: Opens the Vinted purchase page for the product.
-- **Send Message**: Opens the messaging page to contact the seller.
-- **Open Product**: Directly opens the product page on Vinted.
-
-## Customization
-
-You can customize several aspects of the bot by modifying the `config.json` file:
-
-- **search_terms**: A list of keywords to search for products.
-- **refresh_delay**: How often the bot checks for new products (in seconds).
-- **max_images_per_post**: The maximum number of images to display for each product.
-
-## Disclaimer
-
-This tool is intended for educational use only. Ensure compliance with the terms of service of any Shopify stores you monitor, and use the tool responsibly.
+- The bot currently filters for products from Germany only
+- Product IDs are stored in `products.json` to prevent duplicate notifications
+- The authentication system is designed for the Vinted API
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Troubleshooting
-
-- If the bot fails to authenticate with the Vinted API, ensure that the `token` in `config.json` is correct and that Vinted's API is accessible.
-- If you encounter errors while running the bot, check the `vinted_monitor.log` for more detailed error messages.
+This project is provided for educational purposes. Please ensure your usage complies with Vinted's terms of service.
